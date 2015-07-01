@@ -7,5 +7,11 @@
 	<select id="getToday"  resultType="java.lang.String">
 	  select sysdate from dual
 	</select>
-	
+
+	    <update id="writeProc" parameterType="java.util.Map">
+	insert into springboard SELECT (select nvl(max(no),0) + 1 from SPRINGBOARD) as no, #{title} as title, #{content} as content FROM dual
+
+</update>
+
 </mapper>
+	
