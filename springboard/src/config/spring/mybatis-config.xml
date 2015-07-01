@@ -10,4 +10,8 @@
 	<mappers>
 		<mapper resource="config/mapper/sql-main.xml" />
 	</mappers>
+	
+	
+		
+    
 </configuration>

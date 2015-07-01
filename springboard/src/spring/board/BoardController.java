@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import spring.board.service.MainService;
@@ -17,6 +18,11 @@ public class BoardController {
 	@Autowired
 	private MainService mainService;
 	
+	
+	@RequestMapping("/list.do")
+	public void list(@RequestParam Map<String, Object> paramMap, ModelMap model) throws Throwable{
+		model.put("results", mainService.getList(paramMap));
+	}
 	
 	@RequestMapping("/hello.do")
 	public void hello(@RequestParam Map<String, Object> paramMap, ModelMap model) throws Throwable{
@@ -29,7 +35,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/writeForm.do")
-	public void writeForm(@RequestParam Map<String, Object> ParamMap, ModelMap model) throws Throwable{
+	public void writeForm(@RequestParam Map<String, Object> paramMap, ModelMap model) throws Throwable{
+
 	}
 	
 	@RequestMapping("/writeProc.do")
@@ -50,4 +57,9 @@ public class BoardController {
 		return mav;
 
 	}
+		
+
+	
+
 }
+

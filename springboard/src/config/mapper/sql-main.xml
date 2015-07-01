@@ -13,5 +13,10 @@
 
 </update>
 
+
+	<select id="getList" parameterType="java.util.Map" resultType="java.util.HashMap">
+	  select no,title,content from springboard
+	</select>	
+
 </mapper>
 	
