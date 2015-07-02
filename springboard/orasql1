@@ -1,0 +1,23 @@
+select * from SPRINGBOARD;
+select * from tab;
+select no,title,content from springboard;
+
+
+DROP table springboard cascade constraints;
+
+create table springboard(
+	no number(30),
+	title varchar2(200),
+	content varchar2(4000),
+	constraint spring_pk_no primary key (no)
+);
+grant dba to lpko;
+
+
+
+create sequence test_num
+start with 1
+nomaxvalue
+increment by 1
+nocache
+nocycle;
