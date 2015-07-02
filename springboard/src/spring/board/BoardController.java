@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,10 +19,20 @@ public class BoardController {
 	@Autowired
 	private MainService mainService;
 	
+	@RequestMapping("/ajaxView.do")
+	public void ajaxView(@RequestParam Map<String, Object> paramMap, ModelMap model) throws Throwable{
+	}
+	
 	
 	@RequestMapping("/list.do")
 	public void list(@RequestParam Map<String, Object> paramMap, ModelMap model) throws Throwable{
 		model.put("results", mainService.getList(paramMap));
+	}
+	
+	@RequestMapping("/listjson.do")
+	public @ResponseBody Map<?,?> listjson(@RequestParam Map<String, Object> paramMap, ModelMap model) throws Throwable{
+		model.put("results", mainService.getList(paramMap));
+		return model;
 	}
 	
 	@RequestMapping("/hello.do")
