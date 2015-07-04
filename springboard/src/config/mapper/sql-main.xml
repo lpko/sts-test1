@@ -21,5 +21,8 @@
 	  select no,title,content from springboard
 	</select>	
 
+	<select id="getUserPwd" parameterType="java.lang.String" resultType="java.lang.String">
+	  select userpwd from springmember where userid = #{userid}
+	</select>
 </mapper>
 	
