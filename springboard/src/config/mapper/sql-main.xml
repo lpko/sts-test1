@@ -8,10 +8,13 @@
 	  select sysdate from dual
 	</select>
 
-	    <update id="writeProc" parameterType="java.util.Map">
+	<update id="writeProc" parameterType="java.util.Map">
 	insert into springboard SELECT (select nvl(max(no),0) + 1 from SPRINGBOARD) as no, #{title} as title, #{content} as content FROM dual
+	</update>
 
-</update>
+	<update id="writeProc2"  parameterType="spring.board.vo.Board">
+	insert into springboard SELECT (select nvl(max(no),0) + 1 from SPRINGBOARD) as no, #{title} as title, #{content} as content FROM dual
+	</update>
 
 
 	<select id="getList" parameterType="java.util.Map" resultType="java.util.HashMap">

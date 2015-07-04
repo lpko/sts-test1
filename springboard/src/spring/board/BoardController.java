@@ -5,13 +5,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import spring.board.service.MainService;
+import spring.board.vo.Board;
 
 @Controller
 public class BoardController {
@@ -19,9 +20,11 @@ public class BoardController {
 	@Autowired
 	private MainService mainService;
 	
+	
 	@RequestMapping("/ajaxView.do")
 	public void ajaxView(@RequestParam Map<String, Object> paramMap, ModelMap model) throws Throwable{
 	}
+	
 	
 	
 	@RequestMapping("/list.do")
@@ -29,11 +32,11 @@ public class BoardController {
 		model.put("results", mainService.getList(paramMap));
 	}
 	
-	@RequestMapping("/listjson.do")
-	public @ResponseBody Map<?,?> listjson(@RequestParam Map<String, Object> paramMap, ModelMap model) throws Throwable{
+	@RequestMapping("/listJson.do")
+	public  @ResponseBody Map<?,?> listJson(@RequestParam Map<String, Object> paramMap, ModelMap model) throws Throwable{
 		model.put("results", mainService.getList(paramMap));
 		return model;
-	}
+	}	
 	
 	@RequestMapping("/hello.do")
 	public void hello(@RequestParam Map<String, Object> paramMap, ModelMap model) throws Throwable{
@@ -47,6 +50,11 @@ public class BoardController {
 	
 	@RequestMapping("/writeForm.do")
 	public void writeForm(@RequestParam Map<String, Object> paramMap, ModelMap model) throws Throwable{
+
+	}
+	
+	@RequestMapping("/writeForm2.do")
+	public void writeForm2(@RequestParam Map<String, Object> paramMap, ModelMap model) throws Throwable{
 
 	}
 	
@@ -68,9 +76,25 @@ public class BoardController {
 		return mav;
 
 	}
+	
+	@RequestMapping("/writeProc2.do")
+	public ModelAndView writeProc2(@ModelAttribute("board") Board board, ModelMap model) throws Throwable{
+
+		System.out.println("title = " + board.getTitle());
+		System.out.println("content = " + board.getContent());
+		
+		int writeCnt = mainService.writeProc2(board);		
+		
+		System.out.println(writeCnt + "건 입력되었습니다/");
+		
+		//처리 후 redirect
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/list.do");
+		return mav;
+
+	}
 		
 
 	
 
 }
-
