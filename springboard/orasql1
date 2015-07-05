@@ -1,4 +1,5 @@
 select * from SPRINGBOARD;
+select * from SPRINGMEMBER;
 select * from tab;
 select no,title,content from springboard;
 
