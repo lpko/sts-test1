@@ -43,6 +43,7 @@ alter sequence SEQ_TB_BOARD_IDX increment by 1 minvalue 0;
 
 
 게시판 조회
+
 SELECT
     IDX,
     TITLE,
@@ -50,6 +51,8 @@ SELECT
     CREA_DTM
 FROM
     TB_BOARD
+WHERE
+    DEL_GB = 'N'    
 ORDER BY IDX DESC
 
 idx 수정
