@@ -24,7 +24,7 @@ public class SampleController {
 	@Resource(name="sampleService")
     private SampleService sampleService;
 	
-	@RequestMapping(value="/sample/openSampleList.do")
+	@RequestMapping(value="/sample/openBoardList.do")
     public ModelAndView openSampleList(Map<String,Object> commandMap) throws Exception{
     	ModelAndView mv = new ModelAndView("/sample/boardList");
     	log.debug("인터셉터 테스트");
