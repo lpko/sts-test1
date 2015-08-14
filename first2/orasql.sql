@@ -30,7 +30,19 @@ NOMAXVALUE
 NOCACHE;
 
 
+시퀀스 조회
+select * from user_sequences
+where sequence_name = 'SEQ_TB_BOARD_IDX'
+;
 
+시퀀스 초기화
+select SEQ_TB_BOARD_IDX.nextval from dual; 
+alter sequence SEQ_TB_BOARD_IDX increment by -2 minvalue 0;
+select SEQ_TB_BOARD_IDX.nextval from dual;
+alter sequence SEQ_TB_BOARD_IDX increment by 1 minvalue 0;
+
+
+게시판 조회
 SELECT
     IDX,
     TITLE,
@@ -39,3 +51,29 @@ SELECT
 FROM
     TB_BOARD
 ORDER BY IDX DESC
+
+idx 수정
+update TB_BOARD
+set IDX = 1;
+
+게시판 boardlist 테스트용
+INSERT INTO TB_BOARD
+(
+    IDX,
+    TITLE, 
+    CONTENTS, 
+    HIT_CNT, 
+    DEL_GB, 
+    CREA_DTM, 
+    CREA_ID
+)
+VALUES
+(
+    SEQ_TB_BOARD_IDX.nextval, 
+    '제목1', 
+    '내용1', 
+    0, 
+    'N', 
+    SYSDATE, 
+    'Admin'
+);
