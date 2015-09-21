@@ -43,7 +43,7 @@ alter sequence SEQ_TB_BOARD_IDX increment by 1 minvalue 0;
 
 
 게시판 조회
-
+select * from TB_FILE;
 SELECT
     IDX,
     TITLE,
